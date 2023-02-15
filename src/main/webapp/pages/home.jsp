@@ -8,5 +8,6 @@
 </head>
 <body>
 	<h1>Hi this is the home page</h1>
+	<p>Welcome   ${name}</p>
 </body>
 </html>
