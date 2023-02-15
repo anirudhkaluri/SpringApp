@@ -8,6 +8,8 @@
 </head>
 <body>
 	<h1>Hi this is the home page</h1>
-	<p>Welcome   ${name}</p>
+	<!-- Welcome   ${name} -->
+	Welcome ${obj1.aname}, ${obj1.aid} ${obj1.language}
+	
 </body>
 </html>

@@ -76,10 +76,13 @@ public class HomeController {
 	
 	*/
 	
+	/*
+	
 	@RequestMapping("home")
 	public ModelAndView home(@RequestParam("name") String myName) {
 		//@RequestParam will map a  parameter named "name" to the String myName in the function argument
 		ModelAndView mv=new ModelAndView();
+		//you can hold two things 1) model and 2)view
 		//now model and view will have two things. 1) data 2) view
 		mv.addObject("name",myName);
 		//this is data
@@ -87,9 +90,29 @@ public class HomeController {
 		mv.setViewName("home");
 		//now we have to pass the view too
 		return mv; 
+		//why are we able to do this?
+		//thats because the Dispatcher servlet will use this mv object to send the jsp file to the client after injecting the data into the view
 		
 	}
 	
+	NOW LETS SEE HOW TO GET AN OBJECT AS A PARAMETER TO THE FUNCTION.
+	
+	*/
+	
+	@RequestMapping("home")
+	public ModelAndView home(Alien alien) {
+		//we will recieve alien object directly when we use URL something like this
+		//localhost:8080/home?aid=1234&aname=anirudh&language=java
+		//spring will automatically assign the fields in alien to the data which we get into the function parameter object
+		ModelAndView mv=new ModelAndView();
+		mv.addObject("obj1",alien);
+		//we will use obj1 in home.jsp
+		//we will comment ${name} since its no longer needed
+		mv.setViewName("home");
+		//lets change home.jsp
+		return mv;
+		
+	}
 	
 
 }
