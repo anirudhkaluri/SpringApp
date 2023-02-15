@@ -2,7 +2,9 @@ package com.FirstWebApp.demo;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -47,6 +49,10 @@ public class HomeController {
 	 
 	 
 	 */
+	
+	
+	
+	/*
 	 
 	@RequestMapping("home")
 	public String home(String name,HttpSession session) {
@@ -58,6 +64,32 @@ public class HomeController {
 		session.setAttribute("name", name);
 		return "home";
 	}
+	
+	HERE WE USED parameter=name exactly. What if I want to use String called myName? we must use
+	@RequestParam annotation to map it to myName
+	
+	public String home(@RequestParam("name") String myName,HttpSession session)
+	
+	How about skipping HttpSession?
+	We are adding data to session object. That data is being used in home.jsp.
+	We dont usually use sessions.  Lets use ModelAndView object to make use of the real power of Spring
+	
+	*/
+	
+	@RequestMapping("home")
+	public ModelAndView home(@RequestParam("name") String myName) {
+		//@RequestParam will map a  parameter named "name" to the String myName in the function argument
+		ModelAndView mv=new ModelAndView();
+		//now model and view will have two things. 1) data 2) view
+		mv.addObject("name",myName);
+		//this is data
+		//we can add as many number of objects as we want here
+		mv.setViewName("home");
+		//now we have to pass the view too
+		return mv; 
+		
+	}
+	
 	
 
 }
